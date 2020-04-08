@@ -12,5 +12,5 @@ router.register(r"issue-sub-type", views.IssueSubTypeViewSet)
 urlpatterns = [
     path("v1/", include(router.urls)),
     path("auth/", include("djoser.urls.authtoken")),
-    path("request-otp/", views.OTP.as_view()),
+    path("otp/", views.OTP.as_view()),
 ]

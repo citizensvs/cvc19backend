@@ -14,7 +14,8 @@ from app.api.serializers import (
 )
 from django.http.response import JsonResponse
 from app.accounts.models import OneTimePassword
-from app.api.twilio import send_sms
+from app.api.textlocal import send_sms
+from app.common.helpers import normalize_phone_number
 
 
 class UserViewSet(viewsets.ModelViewSet, CreateModelMixin):
@@ -77,15 +78,33 @@ class OTP(View):
     def get(self, request):
         phone = request.GET.get("phone")
         if phone:
-            otp = OneTimePassword.generate_otp(phone)
-            send_sms(phone, otp)
-            return JsonResponse({'success': True})
+            phone = normalize_phone_number(phone)
+            existing_user = EndUser.objects.filter(phone=phone).first()
+            if existing_user:
+                if existing_user.user:
+                    return JsonResponse(
+                        {"username": existing_user.user.username, "success": True}
+                    )
+                return JsonResponse({"success": False, "error": "OTP verified"})
+            otp_text = "OTP for CVC19 is {}"
+            existing_otp = OneTimePassword.objects.filter(
+                phone=phone, used=False
+            ).first()
+            if existing_otp:
+                otp_text = otp_text.format(existing_otp)
+            else:
+                otp_text = otp_text.format(OneTimePassword.generate_otp(phone))
+            send_sms(phone, otp_text)
+            return JsonResponse({"success": True})
+        return JsonResponse({"error": "invalid input", "success": False})
 
     def post(self, request):
         phone = request.POST.get("phone")
         otp = request.POST.get("otp")
         if phone and otp:
+            phone = normalize_phone_number(phone)
             if OneTimePassword.validate_otp(phone, otp):
-                return JsonResponse({"valid": True})
-            return JsonResponse({'error': 'incorrect OTP'})
-        return JsonResponse({'error': 'invalid input'})
+                EndUser.objects.get_or_create(phone=phone)
+                return JsonResponse({"success": True})
+            return JsonResponse({"error": "incorrect OTP", "success": False})
+        return JsonResponse({"error": "invalid input", "success": False})
