@@ -1,6 +1,6 @@
 import os
-import requests
 
+import requests
 
 url = "https://api.textlocal.in/send/"
 

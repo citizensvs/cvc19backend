@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "app.accounts",
     "app.issues",
     "rest_framework",
-    "djoser",
+    # "djoser",
     "rest_framework.authtoken",
 ]
 
@@ -128,6 +128,13 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.TokenAuthentication",
-        "rest_framework.authentication.SessionAuthentication",
+        # "rest_framework.authentication.SessionAuthentication",
     ),
 }
+
+EMAIL_HOST = "smtp.mailgun.org"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "postmaster@mg.penciljar.studio"
+EMAIL_HOST_PASSWORD = os.getenv("MAILGUN_SMTP_PASSWORD")
+EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = True

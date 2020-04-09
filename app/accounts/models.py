@@ -1,7 +1,10 @@
-import math, random
+import math
+import random
+
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.timezone import now
-from django.contrib.auth.models import User
+
 from app.common.helpers import phone_number_valid
 
 
