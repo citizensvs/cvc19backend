@@ -7,7 +7,7 @@ url = "https://api.textlocal.in/send/"
 
 def send_sms(phone, message):
     params = {
-        "apikey": os.getenv('TEXTLOCAL_API_KEY'),
+        "apikey": os.getenv("TEXTLOCAL_API_KEY"),
         "numbers": phone,
         "message": message,
         "sender": "CTZNVS",

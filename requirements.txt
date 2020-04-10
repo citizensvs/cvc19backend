@@ -24,4 +24,4 @@ toml==0.10.0
 twilio==6.38.0
 typed-ast==1.4.1
 urllib3==1.25.8
-mysql-connector-python==8.0.19
+mysqlclient
