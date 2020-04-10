@@ -25,8 +25,7 @@ SECRET_KEY = "x!fnk6q$x986-gb6b5iuviq&_%6anlrp5lw&n!by0&#rp4iutn"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cvc19.azurewebsites.net', 'api.cvc19.penciljar.studio']
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'cvc19.azurewebsites.net', 'api.cvc19.penciljar.studio']
 
 # Application definition
 
@@ -83,6 +82,18 @@ DATABASES = {
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
+
+if os.getenv('PROD_ENV') == 'true':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'sys',
+            'USER': os.getenv('DB_USERNAME'),
+            'PASSWORD': os.getenv('DB_PASSWORD'),
+            'HOST': os.getenv('DB_HOST'),
+            'PORT': '3306',
+        }
+    }
 
 
 # Password validation
