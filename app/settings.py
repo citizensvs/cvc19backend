@@ -86,16 +86,16 @@ DATABASES = {
 if os.getenv('PROD_ENV') == 'true':
     DATABASES = {
         'default': {
-            'ENGINE': 'mysql.connector.django',
+            'ENGINE': 'django.db.backends.mysql',
             'NAME': 'sys',
             'USER': os.getenv('DB_USERNAME'),
             'PASSWORD': os.getenv('DB_PASSWORD'),
             'HOST': os.getenv('DB_HOST'),
             'PORT': '3306',
-            'OPTIONS': {
-                'use_pure': True,
-                'autocommit': True
-            }
+            # 'OPTIONS': {
+            #     'use_pure': True,
+            #     'autocommit': True
+            # }
         }
     }
 
