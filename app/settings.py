@@ -93,7 +93,8 @@ if os.getenv('PROD_ENV') == 'true':
             'HOST': os.getenv('DB_HOST'),
             'PORT': '3306',
             'OPTIONS': {
-                'use_pure': True
+                'use_pure': True,
+                'autocommit': True
             }
         }
     }
