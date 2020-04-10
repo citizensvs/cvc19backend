@@ -48,14 +48,15 @@ class EndUserSerializer(serializers.HyperlinkedModelSerializer):
 
 class IssueTypeSerializer(serializers.ModelSerializer):
     class Meta:
+        depth = 1
         model = IssueType
-        fields = ["name"]
+        fields = ["id", "name", "child_issue_type"]
 
 
 class IssueSubTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = IssueSubType
-        fields = ["name", "parent"]
+        fields = ["id", "name"]
 
 
 class IssueSerializer(serializers.ModelSerializer):
