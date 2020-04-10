@@ -16,6 +16,7 @@ from rest_framework.views import APIView
 from app.accounts.models import EndUser, OneTimePassword
 from app.accounts.tokens import account_activation_token
 from app.accounts.utils import create_user_account, get_and_authenticate_user
+from app.api import pagination
 from app.api.permissions import IsOwner
 from app.api.serializers import (
     AuthUserSerializer,
@@ -90,6 +91,7 @@ class IssueTypeViewSet(viewsets.ModelViewSet):
     queryset = IssueType.objects.all()
     serializer_class = IssueTypeSerializer
     permission_classes = [permissions.IsAuthenticated]
+    pagination_class = pagination.StandardResultsSetPagination
 
 
 class IssueSubTypeViewSet(viewsets.ModelViewSet):
