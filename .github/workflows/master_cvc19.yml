@@ -32,13 +32,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         python manage.py migrate
-    - name: Azure Login
-      uses: Azure/login@v1
-      with:
-        creds: ${{ env.AZURE_CREDENTIALS }}
     - name: Deploy Web App using GH Action azure/webapps-deploy
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        publish-profile: ${{ secrets.AZURE_CREDENTIALS }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
