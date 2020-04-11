@@ -99,6 +99,12 @@ if os.getenv("PROD_ENV") == "true":
             "PORT": "3306",
         }
     }
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": '/home/django.sqlite3',
+        }
+    }
 
 
 # Password validation
