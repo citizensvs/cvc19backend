@@ -25,6 +25,7 @@ from app.api.serializers import (
     GroupSerializer,
     IssueSerializer,
     IssueTypeSerializer,
+    IssueSubTypeSerializer,
     PasswordChangeSerializer,
     UserLoginSerializer,
     UserRegisterSerializer,
@@ -100,7 +101,7 @@ class IssueSubTypeViewSet(viewsets.ModelViewSet):
     """
 
     queryset = IssueSubType.objects.all()
-    serializer_class = IssueTypeSerializer
+    serializer_class = IssueSubTypeSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 

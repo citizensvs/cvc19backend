@@ -87,7 +87,7 @@ class IssueSerializer(serializers.ModelSerializer):
 
 
 class UserLoginSerializer(serializers.Serializer):
-    username = serializers.CharField(max_length=256, required=True)
+    username = serializers.CharField(max_length=100, required=True)
     password = serializers.CharField(required=True, write_only=True)
 
 

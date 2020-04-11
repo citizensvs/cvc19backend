@@ -34,7 +34,7 @@ class LocationModel(models.Model):
 class IssueType(models.Model):
     name = models.CharField(
         verbose_name="Issue Type Name",
-        max_length=256,
+        max_length=200,
         unique=True,
         blank=False,
         null=False,
@@ -47,7 +47,7 @@ class IssueType(models.Model):
 class IssueSubType(models.Model):
     name = models.CharField(
         verbose_name="Issue Sub Type Name",
-        max_length=256,
+        max_length=200,
         unique=True,
         blank=False,
         null=False,
