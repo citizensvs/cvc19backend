@@ -31,6 +31,7 @@ jobs:
         apt install -y gcc
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        python manage.py migrate
     - name: Deploy Web App using GH Action azure/webapps-deploy
       uses: azure/webapps-deploy@v2
       with:
