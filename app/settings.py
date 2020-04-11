@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    "cvc19.azurewebsites.net",
+    "cvc191.azurewebsites.net",
     "api.cvc19.penciljar.studio",
 ]
 
