@@ -35,7 +35,7 @@ jobs:
     - name: Azure Login
       uses: Azure/login@v1
       with:
-        credentials: ${{ env.AZURE_CREDENTIALS }}
+        creds: ${{ env.AZURE_CREDENTIALS }}
     - name: Deploy Web App using GH Action azure/webapps-deploy
       uses: azure/webapps-deploy@v2
       with:
