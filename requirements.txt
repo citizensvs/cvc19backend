@@ -5,7 +5,7 @@ black==19.10b0
 certifi==2020.4.5.1
 chardet==3.0.4
 click==7.1.1
-Django==3.0.5
+Django==3.0.7
 django-templated-mail==1.1.1
 djangorestframework==3.11.0
 djoser==2.0.3
